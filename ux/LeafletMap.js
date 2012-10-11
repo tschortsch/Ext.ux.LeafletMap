@@ -68,8 +68,7 @@ Ext.define('Ext.ux.LeafletMap', {
 		
 		/**
 		 * @cfg {Object} tileLayerOptions
-         * @cfg {Object} [tileLayerOptions.detectRetina=true]
-		 * Tile-layer options which should be used in the constructor.
+		 * Tile-layer options which should be used in the L.TileLayer constructor.
 		 * @accessor
 		 */
 		tileLayerOptions: {
@@ -303,9 +302,9 @@ Ext.define('Ext.ux.LeafletMap', {
      *
      *     { latitude: 47.36865, longitude: 8.539183 }
      *
-     * or a OpenLayers.LonLat object representing to the target location.
+     * or a L.LatLng object representing to the target location.
      *
-     * @param {Object/OpenLayers.LonLat} coordinates Object representing the desired longitude and
+     * @param {Object/L.LatLng} coordinates Object representing the desired longitude and
      * latitude upon which to center the map.
      */
 	setMapCenter: function(coordinates) {
