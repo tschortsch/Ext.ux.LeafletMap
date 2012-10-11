@@ -20,7 +20,7 @@ Ext.define('LeafletMapDemo.view.Main', {
 						// Ext.ux.LeafletMap Component
 						xtype: 'leafletmap',
 						id: 'leafletmap',
-						useCurrentLocation: true,
+						useCurrentLocation: false,
 						autoMapCenter: false,
 						mapOptions: {
 							zoom: 15
