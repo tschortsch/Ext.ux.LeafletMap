@@ -137,7 +137,7 @@ Ext.define('Ext.ux.LeafletMap', {
         initialCenter: true
     },
 
-    constructor: function() {
+    constructor: function () {
         this.callParent(arguments);
 
         var ll = window.L;
@@ -147,7 +147,7 @@ Ext.define('Ext.ux.LeafletMap', {
         }
     },
 
-    initialize: function() {
+    initialize: function () {
         this.callParent();
         this.on({
             painted: 'doResize',
@@ -156,7 +156,7 @@ Ext.define('Ext.ux.LeafletMap', {
         this.innerElement.on('touchstart', 'onTouchStart', this);
     },
 
-    getElementConfig: function() {
+    getElementConfig: function () {
         return {
             reference: 'element',
             className: 'x-container',
@@ -171,15 +171,15 @@ Ext.define('Ext.ux.LeafletMap', {
         };
     },
 
-    onTouchStart: function(e) {
+    onTouchStart: function (e) {
         e.makeUnpreventable();
     },
 
-    applyMapOptions: function(options) {
+    applyMapOptions: function (options) {
         return Ext.merge({}, this.options, options);
     },
 
-    updateMapOptions: function(newOptions) {
+    updateMapOptions: function (newOptions) {
         var me = this,
             ll = window.L,
             map = this.getMap();
@@ -193,26 +193,26 @@ Ext.define('Ext.ux.LeafletMap', {
         }
     },
 
-    getMapOptions: function() {
+    getMapOptions: function () {
         return Ext.merge({}, this.options || this.getInitialConfig('mapOptions'));
     },
 
-    getTileLayerOptions: function() {
+    getTileLayerOptions: function () {
         return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
     },
 
-    updateUseCurrentLocation: function(useCurrentLocation) {
+    updateUseCurrentLocation: function (useCurrentLocation) {
         this.setGeo(useCurrentLocation);
         if (!this.getMap() && (!useCurrentLocation || !this.getInitialCenter())) {
             this.renderMap();
         }
     },
 
-    applyGeo: function(config) {
+    applyGeo: function (config) {
         return Ext.factory(config, Ext.util.Geolocation, this.getGeo());
     },
 
-    updateGeo: function(newGeo, oldGeo) {
+    updateGeo: function (newGeo, oldGeo) {
         var events = {
             locationupdate : 'onGeoUpdate',
             locationerror : 'onGeoError',
@@ -229,7 +229,7 @@ Ext.define('Ext.ux.LeafletMap', {
         }
     },
 
-    doResize: function() {
+    doResize: function () {
         var ll = window.L,
             map = this.getMap();
 
@@ -239,7 +239,7 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     // @private
-    renderMap: function() {
+    renderMap: function () {
         var me = this,
             ll = window.L,
             element = me.mapContainer,
@@ -280,7 +280,7 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     // @private
-    onGeoUpdate: function(geo) {
+    onGeoUpdate: function (geo) {
         var ll = window.L;
 
         if (ll && geo && (this.getAutoMapCenter() || this.getInitialCenter())) {
@@ -302,7 +302,7 @@ Ext.define('Ext.ux.LeafletMap', {
      * @param {Object/L.LatLng} coordinates Object representing the desired longitude and
      * latitude upon which to center the map.
      */
-    setMapCenter: function(coordinates) {
+    setMapCenter: function (coordinates) {
         var me = this,
             map = me.getMap(),
             ll = window.L;
@@ -316,7 +316,7 @@ Ext.define('Ext.ux.LeafletMap', {
 
             coordinates = coordinates || new ll.LatLng(47.36865, 8.539183);
 
-            if (coordinates && !(coordinates instanceof ll.LatLng) && 'latitude' in coordinates) {
+            if (coordinates && !(coordinates instanceof ll.LatLng) && coordinates.hasOwnProperty('latitude')) {
                 coordinates = new ll.LatLng(coordinates.latitude, coordinates.longitude);
             }
 
@@ -336,7 +336,7 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     // @private
-    onZoomEnd : function() {
+    onZoomEnd: function () {
         var mapOptions = this.getMapOptions(),
             map = this.getMap(),
             tileLayer = this.getTileLayer(),
@@ -352,7 +352,7 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     // @private
-    onMoveStart : function() {
+    onMoveStart: function () {
         var map = this.getMap(),
             tileLayer = this.getTileLayer();
 
@@ -360,7 +360,7 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     // @private
-    onMoveEnd : function() {
+    onMoveEnd: function () {
         var map = this.getMap(),
             tileLayer = this.getTileLayer();
 
@@ -368,7 +368,7 @@ Ext.define('Ext.ux.LeafletMap', {
     },
 
     // @private
-    destroy: function() {
+    destroy: function () {
         Ext.destroy(this.getGeo());
         var map = this.getMap();
 
