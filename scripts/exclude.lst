@@ -1,0 +1,6 @@
+/.git/*
+/build/*
+/jsduck/*
+/nbproject/*
+/scripts/*
+.gitignore
