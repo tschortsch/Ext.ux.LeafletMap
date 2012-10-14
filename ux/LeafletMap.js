@@ -58,7 +58,7 @@ Ext.define('Ext.ux.LeafletMap', {
          * The base CSS class to apply to the map's element
          * @accessor
          */
-        baseCls: Ext.baseCSSPrefix + 'map',
+        baseCls: Ext.baseCSSPrefix + 'llmap',
 
         /**
          * @cfg {Boolean/Ext.util.Geolocation} useCurrentLocation
@@ -143,7 +143,7 @@ Ext.define('Ext.ux.LeafletMap', {
         var ll = window.L;
 
         if (!ll) {
-            this.setHtml('Leaflet API is required');
+            this.setHtml('Leaflet library is required');
         }
     },
 
