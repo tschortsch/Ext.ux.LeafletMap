@@ -4,6 +4,16 @@
 
 Ext.ux.LeafletMap is a Sencha Touch 2 component which wraps a Leaflet map using the Leftlet API (http://leaflet.cloudmade.com/reference.html).
 
+## Changelog
+
+[2012-10-15] **v1.0.1** Juerg Hunziker (tschortsch)
+
+* Implemented GeoError event behaviour
+
+[2012-10-13] **v1.0.0** Juerg Hunziker (tschortsch)
+
+* Initial public release
+
 ## License
 
 (The MIT License)
