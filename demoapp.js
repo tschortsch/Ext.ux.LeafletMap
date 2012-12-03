@@ -4,7 +4,9 @@ Ext.Loader.setConfig({
 });
 
 Ext.Loader.setPath({
-    'Ext.ux': 'ux'
+    'Ext.ux': 'ux',
+    'Ext': 'lib/sencha-touch-2.1.0',
+    'LeafletMapDemo': 'app'
 });
 
 Ext.application({
@@ -26,6 +28,14 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        Ext.Viewport.add(Ext.create('LeafletMapDemo.view.Main'));
+        var llmap = Ext.create('Ext.ux.LeafletMap', {
+                        id: 'leafletmap',
+                        useCurrentLocation: false,
+                        autoMapCenter: false,
+                        mapOptions: {
+                            zoom: 15
+                        }
+                    });
+        Ext.Viewport.add(llmap);
     }
 });
