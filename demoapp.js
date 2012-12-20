@@ -28,14 +28,6 @@ Ext.application({
 
     // launch function is called as soon as app is ready
     launch: function() {
-        var llmap = Ext.create('Ext.ux.LeafletMap', {
-                        id: 'leafletmap',
-                        useCurrentLocation: false,
-                        autoMapCenter: false,
-                        mapOptions: {
-                            zoom: 15
-                        }
-                    });
-        Ext.Viewport.add(llmap);
+        Ext.Viewport.add(Ext.create('LeafletMapDemo.view.Main'));
     }
 });
