@@ -22,6 +22,7 @@ Ext.define('LeafletMapDemo.view.Main', {
 						id: 'leafletmap',
 						useCurrentLocation: false,
 						autoMapCenter: false,
+                        enableOwnPositionMarker: false,
 						mapOptions: {
 							zoom: 15
 						}
