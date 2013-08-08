@@ -292,11 +292,7 @@ Ext.define('Ext.ux.LeafletMap', {
             return;
         }
 
-        if (ll) {
-            if (element.dom.firstChild) {
-                Ext.fly(element.dom.firstChild).destroy();
-            }
-
+        if (ll && !element.dom._leaflet) {
             // if no center property is given -> use default position
             if (!mapOptions.hasOwnProperty('center') || !(mapOptions.center instanceof ll.LatLng)) {
                 mapOptions.center = new ll.LatLng(47.36865, 8.539183); // default: Zuerich
