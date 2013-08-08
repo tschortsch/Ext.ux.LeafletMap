@@ -5,7 +5,7 @@ Ext.Loader.setConfig({
 
 Ext.Loader.setPath({
     'Ext.ux': 'ux',
-    'Ext': 'lib/sencha-touch-2.1.0',
+    'Ext': 'lib/touch-2.3.0-beta',
     'LeafletMapDemo': 'app'
 });
 
