@@ -6,6 +6,10 @@ Ext.ux.LeafletMap is a Sencha Touch 2 component which wraps a Leaflet map using 
 
 ## Changelog
 
+[2013-09-23] **v1.2.0** Juerg Hunziker (tschortsch)
+
+* Fixed map centering if mapOptions.center is given
+
 [2013-01-01] **v1.1.0** Juerg Hunziker (tschortsch)
 
 * Added possibility to add a marker to the current location
