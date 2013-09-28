@@ -7,7 +7,7 @@
  *     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
  *
  * ## Example
- * 
+ *
  *     Ext.Viewport.add({
  *         xtype: 'leafletmap',
  *         useCurrentLocation: true
@@ -78,7 +78,7 @@ Ext.define('Ext.ux.LeafletMap', {
         /**
          * @cfg {Object} mapOptions
          * MapOptions as specified by the Leaflet documentation:
-         * [http://leaflet.cloudmade.com/reference.html#map-options](http://leaflet.cloudmade.com/reference.html#map-options)
+         * [http://leafletjs.com/reference.html#map-class](http://leafletjs.com/reference.html#map-class)
          * @accessor
          */
         mapOptions: {},
@@ -86,16 +86,16 @@ Ext.define('Ext.ux.LeafletMap', {
         /**
          * @cfg {String} [tileLayerUrl="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"]
          * URL template for tile-layer in the following form
-         * 
+         *
          *     'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
-         * 
-         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default, 
+         *
+         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default,
          * can be omitted), {z} — zoom level, {x} and {y} — tile coordinates.
-         * 
+         *
          * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#tileLayerOptions}, like this:
-         * 
+         *
          *     tileLayerUrl: 'http://{s}.somedomain.com/{foo}/{z}/{x}/{y}.png', tileLayerOptions: {foo: 'bar'};
-         * 
+         *
          * @accessor
          */
         tileLayerUrl: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -328,7 +328,7 @@ Ext.define('Ext.ux.LeafletMap', {
             this.setInitialCenter(false);
         }
         if(ownPositionMarker) {
-            ownPositionMarker.setLatLng(L.latLng(geo.getLatitude(), geo.getLongitude()));
+            ownPositionMarker.setLatLng(ll.latLng(geo.getLatitude(), geo.getLongitude()));
         }
     },
 
@@ -389,16 +389,17 @@ Ext.define('Ext.ux.LeafletMap', {
      */
     addOwnPositionMarker: function() {
         var me = this,
+            ll = window.L,
             icon,
             iconOptions,
             ownPositionMarker,
             markerOptions;
 
         iconOptions = Ext.merge({}, me.getOwnPositionMarkerIcon());
-        icon = L.icon(iconOptions);
+        icon = ll.icon(iconOptions);
 
         markerOptions = Ext.merge({ icon: icon }, me.getOwnPositionMarkerOptions());
-        ownPositionMarker = L.marker([me.getGeo().getLatitude(), me.getGeo().getLongitude()], markerOptions);
+        ownPositionMarker = ll.marker([me.getGeo().getLatitude(), me.getGeo().getLongitude()], markerOptions);
         me.setOwnPositionMarker(ownPositionMarker);
         ownPositionMarker.addTo(me.getMap());
     },
