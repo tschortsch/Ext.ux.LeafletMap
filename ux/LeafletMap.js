@@ -128,7 +128,7 @@ Ext.define('Ext.ux.LeafletMap', {
 
         /**
          * @cfg {Object} retinaTileLayerOptions
-         * Tile-layer options which should be used in the L.TileLayer constructor.
+         * Retina tile-layer options which should be used in the L.TileLayer constructor.
          * @accessor
          */
         retinaTileLayerOptions: {},
