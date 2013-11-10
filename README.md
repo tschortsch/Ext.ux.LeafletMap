@@ -6,6 +6,10 @@ Ext.ux.LeafletMap is a Sencha Touch 2 component which wraps a Leaflet map using 
 
 ## Changelog
 
+[2013-11-10] **v1.3.0** Juerg Hunziker (tschortsch)
+
+* New config option for retina tile layer url
+
 [2013-09-23] **v1.2.0** Juerg Hunziker (tschortsch)
 
 * Fixed map centering if mapOptions.center is given

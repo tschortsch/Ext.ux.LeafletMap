@@ -124,6 +124,32 @@ Ext.define('Ext.ux.LeafletMap', {
          */
         tileLayerOptions: {},
 
+<span id='Ext-ux-LeafletMap-cfg-retinaTileLayerUrl'>        /**
+</span>         * @cfg {String} [retinaTileLayerUrl=&quot;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;]
+         * URL template for tile-layer with retina tiles in the following form
+         *
+         *     'http://{s}.somedomain.com/style@2x/{z}/{x}/{y}.png'
+         *
+         * {s} means one of the randomly chosen subdomains (their range is specified in options; a, b or c by default,
+         * can be omitted), {z} — zoom level, {x} and {y} — tile coordinates.
+         *
+         * If retina url is defined it's used if the device has a retina display.
+         *
+         * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#retinaTileLayerOptions}, like this:
+         *
+         *     retinaTileLayerUrl: 'http://{s}.somedomain.com/{foo}@2x/{z}/{x}/{y}.png', retinaTileLayerOptions: {foo: 'bar'};
+         *
+         * @accessor
+         */
+        retinaTileLayerUrl: null,
+
+<span id='Ext-ux-LeafletMap-cfg-retinaTileLayerOptions'>        /**
+</span>         * @cfg {Object} retinaTileLayerOptions
+         * Tile-layer options which should be used in the L.TileLayer constructor.
+         * @accessor
+         */
+        retinaTileLayerOptions: {},
+
 <span id='Ext-ux-LeafletMap-cfg-tileLayer'>        /**
 </span>         * @cfg {L.TileLayer} tileLayer
          * The wrapped layer.
@@ -256,6 +282,10 @@ Ext.define('Ext.ux.LeafletMap', {
 </span>        return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
     },
 
+<span id='Ext-ux-LeafletMap-method-getRetinaTileLayerOptions'>    getRetinaTileLayerOptions: function () {
+</span>        return Ext.merge({}, this.options || this.getInitialConfig('retinaTileLayerOptions'));
+    },
+
 <span id='Ext-ux-LeafletMap-method-updateUseCurrentLocation'>    updateUseCurrentLocation: function (useCurrentLocation) {
 </span>        this.setGeo(useCurrentLocation);
         if (!this.getMap() &amp;&amp; (!useCurrentLocation || !this.getInitialCenter())) {
@@ -319,7 +349,11 @@ Ext.define('Ext.ux.LeafletMap', {
                 mapOptions.center = new ll.LatLng(mapOptions.center.lat, mapOptions.center.lng);
             }
 
-            me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
+            if(me.getRetinaTileLayerUrl() !== null &amp;&amp; me.getRetinaTileLayerUrl() !== &quot;&quot; &amp;&amp; ll.Browser.retina) {
+                me.setTileLayer(new ll.TileLayer(me.getRetinaTileLayerUrl(), me.getRetinaTileLayerOptions()));
+            } else {
+                me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
+            }
             tileLayer = me.getTileLayer();
             mapOptions.layers = [tileLayer];
 
