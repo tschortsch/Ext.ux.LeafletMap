@@ -135,20 +135,13 @@ Ext.define('Ext.ux.LeafletMap', {
          *
          * If retina url is defined it's used if the device has a retina display.
          *
-         * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#retinaTileLayerOptions}, like this:
+         * You can use custom keys in the template, which will be evaluated from {@link Ext.ux.LeafletMap#tileLayerOptions}, like this:
          *
-         *     retinaTileLayerUrl: 'http://{s}.somedomain.com/{foo}@2x/{z}/{x}/{y}.png', retinaTileLayerOptions: {foo: 'bar'};
+         *     retinaTileLayerUrl: 'http://{s}.somedomain.com/{foo}@2x/{z}/{x}/{y}.png', tileLayerOptions: {foo: 'bar'};
          *
          * @accessor
          */
         retinaTileLayerUrl: null,
-
-<span id='Ext-ux-LeafletMap-cfg-retinaTileLayerOptions'>        /**
-</span>         * @cfg {Object} retinaTileLayerOptions
-         * Tile-layer options which should be used in the L.TileLayer constructor.
-         * @accessor
-         */
-        retinaTileLayerOptions: {},
 
 <span id='Ext-ux-LeafletMap-cfg-tileLayer'>        /**
 </span>         * @cfg {L.TileLayer} tileLayer
@@ -282,10 +275,6 @@ Ext.define('Ext.ux.LeafletMap', {
 </span>        return Ext.merge({}, this.options || this.getInitialConfig('tileLayerOptions'));
     },
 
-<span id='Ext-ux-LeafletMap-method-getRetinaTileLayerOptions'>    getRetinaTileLayerOptions: function () {
-</span>        return Ext.merge({}, this.options || this.getInitialConfig('retinaTileLayerOptions'));
-    },
-
 <span id='Ext-ux-LeafletMap-method-updateUseCurrentLocation'>    updateUseCurrentLocation: function (useCurrentLocation) {
 </span>        this.setGeo(useCurrentLocation);
         if (!this.getMap() &amp;&amp; (!useCurrentLocation || !this.getInitialCenter())) {
@@ -350,7 +339,7 @@ Ext.define('Ext.ux.LeafletMap', {
             }
 
             if(me.getRetinaTileLayerUrl() !== null &amp;&amp; me.getRetinaTileLayerUrl() !== &quot;&quot; &amp;&amp; ll.Browser.retina) {
-                me.setTileLayer(new ll.TileLayer(me.getRetinaTileLayerUrl(), me.getRetinaTileLayerOptions()));
+                me.setTileLayer(new ll.TileLayer(me.getRetinaTileLayerUrl(), me.getTileLayerOptions()));
             } else {
                 me.setTileLayer(new ll.TileLayer(me.getTileLayerUrl(), me.getTileLayerOptions()));
             }
